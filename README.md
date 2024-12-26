@@ -1,17 +1,8 @@
-# "React Register Form with Validation, Axios, and Accessibility"
+# React + Vite
 
-✅ [Check out my YouTube Channel with all of my tutorials](https://www.youtube.com/DaveGrayTeachesCode).
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-**Description:**
+Currently, two official plugins are available:
 
-This repository shares the code applied during the [YouTube Tutorial](https://youtu.be/brcHK3P6ChQ). 
-
-Build the backend REST API that I test this registration form with in my [7 hour Node JS for Beginners course](https://youtu.be/f2EqECiTBL8) on my channel.
-
-Just starting with React? I have a [9 hour React course tutorial video](https://youtu.be/RVFAyFWO4go) on my channel.  
-
-I suggest completing my [8 hour JavaScript course tutorial video](https://youtu.be/EfAl9bwzVZk) before attempting React if you are new to Javascript.
-
-### Academic Honesty
-
-**DO NOT COPY FOR AN ASSIGNMENT** - Avoid plagiargism and adhere to the spirit of this [Academic Honesty Policy](https://www.freecodecamp.org/news/academic-honesty-policy/).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
