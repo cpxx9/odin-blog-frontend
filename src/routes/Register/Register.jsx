@@ -2,11 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from '../../api/axios';
 import StyledRegister from './StyledRegister';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = '/users';
 
 const Register = () => {
   const userRef = useRef();
@@ -55,9 +56,28 @@ const Register = () => {
       setErrMsg('Invalid Entry');
       return;
     }
-
-    console.log(user, pwd);
-    setSuccess(true);
+    try {
+      const res = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ username: user, password: pwd, confirmPassword: matchPwd }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        },
+      );
+      console.log(res.data);
+      console.log(JSON.stringify(res));
+      setSuccess(true);
+    } catch (err) {
+      if (!err.response) {
+        setErrMsg('No server response');
+      } else if (err.response?.status === 409) {
+        setErrMsg('Username Takem');
+      } else {
+        setErrMsg('registration Failed');
+      }
+      errRef.current.focus();
+    }
   };
 
   return (
