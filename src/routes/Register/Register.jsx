@@ -7,7 +7,7 @@ import StyledRegister from './StyledRegister';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{5,30}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,32}$/;
-const REGISTER_URL = '/users';
+const REGISTER_URL = '/register';
 
 const Register = () => {
   const userRef = useRef();
@@ -65,14 +65,13 @@ const Register = () => {
           withCredentials: true,
         },
       );
-      console.log(res.data);
-      console.log(JSON.stringify(res));
+      console.log(JSON.stringify(res.data));
       setSuccess(true);
     } catch (err) {
-      if (!err.response) {
+      if (!err?.response) {
         setErrMsg('No server response');
       } else if (err.response?.status === 409) {
-        setErrMsg('Username Takem');
+        setErrMsg('Username Taken');
       } else {
         setErrMsg('Registration Failed');
       }
