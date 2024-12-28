@@ -62,7 +62,7 @@ const Register = () => {
         JSON.stringify({ username: user, password: pwd, confirmPassword: matchPwd }),
         {
           headers: { 'Content-Type': 'application/json' },
-          // withCredentials: true,
+          withCredentials: true,
         },
       );
       console.log(res.data);
@@ -74,7 +74,7 @@ const Register = () => {
       } else if (err.response?.status === 409) {
         setErrMsg('Username Takem');
       } else {
-        setErrMsg('registration Failed');
+        setErrMsg('Registration Failed');
       }
       errRef.current.focus();
     }
