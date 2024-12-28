@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import axios from '../../api/axios';
+import { useEffect, useRef, useContext, useState } from 'react';
+import AuthContext from '../../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 import StyledLogin from './StyledLogin';
 
+const LOGIN_URL = '/login';
+
 const Login = () => {
+  const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -21,8 +26,20 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPwd('');
-    setSuccess(true);
+    try {
+      const res = await axios.post(LOGIN_URL, JSON.stringify({ username: user, password: pwd }), {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      console.log(JSON.stringify(res?.data));
+      const accessToken = res?.data?.token;
+      const userInfo = res?.data?.user;
+      setAuth(user, pwd, userInfo, accessToken);
+      setPwd('');
+      setSuccess(true);
+    } catch (err) {
+      setErrMsg(err.response.data.msg);
+    }
   };
 
   return (
