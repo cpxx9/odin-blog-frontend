@@ -35,10 +35,9 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
-      console.log(JSON.stringify(res?.data));
       const accessToken = res?.data?.token;
       const userInfo = res?.data?.user;
-      setAuth(user, userInfo, accessToken);
+      setAuth({ user, userInfo, accessToken });
       setPwd('');
       navigate(from, { replace: true });
     } catch (err) {
