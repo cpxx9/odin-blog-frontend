@@ -15,7 +15,7 @@ const routesConfig = createRoutesFromElements(
     <Route element={<RequireAuth />}>
       <Route path="announcements" element={<Announcements />} />
     </Route>
-    <Route path="*" element={NotFound} />
+    <Route path="*" element={<NotFound />} />
   </Route>,
 );
 
