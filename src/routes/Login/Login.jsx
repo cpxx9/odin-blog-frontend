@@ -42,7 +42,8 @@ const Login = () => {
       setPwd('');
       navigate(from, { replace: true });
     } catch (err) {
-      setErrMsg(err.response.data.msg);
+      const errDat = err.code === 'ERR_NETWORK' ? 'Server error' : err.response.data.msg;
+      setErrMsg(errDat);
     }
   };
 
