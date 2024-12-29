@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
+  const failAuth = location.state?.failAuth;
 
   const userRef = useRef();
   const errRef = useRef();
@@ -51,6 +52,7 @@ const Login = () => {
         {errMsg}
       </p>
       <h1>Login</h1>
+      {failAuth && <p>You must be signed in</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
